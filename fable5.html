@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Fable 5 — O que muda no seu trabalho com IA</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0A0A0A;
+    --white: #FFFFFF;
+    --red: #E8001D;
+    --red-dim: #FF1A35;
+    --gray: #F2F2F2;
+    --gray-mid: #999;
+    --border: #E0E0E0;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* ALERTA TOPO */
+  .topbar {
+    background: var(--red);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* NAV */
+  nav {
+    border-bottom: 1px solid var(--border);
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.05em;
+    color: var(--black);
+    text-decoration: none;
+  }
+  .nav-tag {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-mid);
+  }
+
+  /* HERO */
+  .hero {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px 24px 60px;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    background: var(--black);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 10vw, 96px);
+    line-height: 0.92;
+    letter-spacing: 0.01em;
+    color: var(--black);
+    margin-bottom: 28px;
+  }
+  .hero h1 span {
+    color: var(--red);
+  }
+  .hero-sub {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+    max-width: 540px;
+    margin: 0 auto 40px;
+    line-height: 1.55;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 48px;
+    height: 3px;
+    background: var(--red);
+    margin: 0 auto 40px;
+  }
+
+  /* SEÇÃO GENÉRICA */
+  section {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 56px 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 6vw, 48px);
+    line-height: 1;
+    color: var(--black);
+    margin-bottom: 20px;
+    letter-spacing: 0.02em;
+  }
+  .section-body {
+    font-size: 15px;
+    color: #333;
+    line-height: 1.7;
+  }
+
+  /* CONTEXTO — linha do tempo */
+  .timeline {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 20px;
+    align-items: start;
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+  }
+  .tl-item:last-child { border-bottom: 1px solid var(--border); }
+  .tl-date {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--gray-mid);
+    padding-top: 2px;
+  }
+  .tl-text strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+  .tl-text p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  /* CAPACIDADES — grid */
+  .caps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 32px;
+  }
+  @media (max-width: 520px) { .caps-grid { grid-template-columns: 1fr; } }
+
+  .cap-card {
+    background: var(--gray);
+    padding: 24px 22px;
+    border-left: 3px solid var(--red);
+  }
+  .cap-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.03em;
+    margin-bottom: 6px;
+    color: var(--black);
+  }
+  .cap-card p {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  /* IMPACTO PRÁTICO */
+  .impact-list {
+    margin-top: 28px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .impact-list li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .impact-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--red);
+    line-height: 1;
+    min-width: 32px;
+  }
+  .impact-text strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .impact-text p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.55;
+  }
+
+  /* ACESSO */
+  .access-box {
+    background: var(--black);
+    color: var(--white);
+    padding: 36px 32px;
+    margin-top: 32px;
+  }
+  .access-box h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.04em;
+    margin-bottom: 16px;
+  }
+  .access-box ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .access-box ul li {
+    font-size: 14px;
+    color: #ccc;
+    padding-left: 18px;
+    position: relative;
+  }
+  .access-box ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--red-dim);
+    font-weight: 700;
+  }
+  .access-box .deadline {
+    margin-top: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--red-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* CTA FINAL */
+  .cta-section {
+    background: var(--red);
+    text-align: center;
+    padding: 72px 24px;
+    border-top: none;
+    max-width: 100%;
+  }
+  .cta-section .section-label { color: rgba(255,255,255,0.6); }
+  .cta-section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 8vw, 72px);
+    color: var(--white);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin-bottom: 16px;
+  }
+  .cta-section p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.85);
+    max-width: 480px;
+    margin: 0 auto 32px;
+    line-height: 1.55;
+  }
+  .btn-wpp {
+    display: inline-block;
+    background: var(--white);
+    color: var(--red);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.08em;
+    padding: 16px 40px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .btn-wpp:hover { opacity: 0.88; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--gray-mid);
+  }
+  footer a {
+    color: var(--black);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 16px 20px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">🚨 Lançamento hoje, 09/06 · Acesso gratuito até 22 de junho nos planos Pro, Max e Team</div>
+
+<nav>
+  <a class="nav-brand" href="#">Guilherme Thomaz · IA</a>
+  <span class="nav-tag">@guilherme.thomaz.ia</span>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="hero-eyebrow">Anthropic · Claude Fable 5</span>
+  <h1>A IA QUE ELES TINHAM<br><span>MEDO</span> DE SOLTAR</h1>
+  <div class="divider"></div>
+  <p class="hero-sub">O que é o Fable 5, o que ele consegue fazer e — principalmente — o que isso muda agora no seu trabalho com IA.</p>
+</div>
+
+<!-- CONTEXTO -->
+<section>
+  <p class="section-label">Contexto</p>
+  <h2 class="section-title">Como chegamos até aqui</h2>
+  <p class="section-body">O Fable 5 não surgiu do nada. É o resultado de um processo que começou com um modelo tão poderoso que a própria Anthropic ficou com receio de lançá-lo.</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <span class="tl-date">ABR 2026</span>
+      <div class="tl-text">
+        <strong>Mythos Preview — acesso restrito</strong>
+        <p>Anthropic lança o Mythos em modo fechado para menos de 150 organizações parceiras. Motivo: o modelo encontrou centenas de vulnerabilidades críticas em sistemas reais, sozinho, sem ser pedido.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-date">JUN 2026</span>
+      <div class="tl-text">
+        <strong>Fable 5 — liberado ao público hoje</strong>
+        <p>Mesma arquitetura do Mythos. Com camadas de segurança que bloqueiam usos de alto risco (cibersegurança ofensiva, biologia, química) e redirecionam para o Opus 4.8. Mais de 95% das sessões rodam no Fable 5 sem restrição.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-date">ATÉ 22/JUN</span>
+      <div class="tl-text">
+        <strong>Janela gratuita nos planos atuais</strong>
+        <p>Pro, Max, Team e Enterprise seat-based recebem acesso ao Fable 5 sem custo extra durante esse período. Depois disso, nova precificação entra em vigor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPACIDADES -->
+<section>
+  <p class="section-label">O que ele faz</p>
+  <h2 class="section-title">Capacidades que importam pra você</h2>
+  <p class="section-body">Estado da arte em quase todos os benchmarks testados. Mas, na prática, o que isso significa para quem trabalha com criação e design com IA?</p>
+
+  <div class="caps-grid">
+    <div class="cap-card">
+      <h3>Visão Computacional</h3>
+      <p>Analisa imagens, layouts e referências visuais com nível de detalhe inédito. Descreveu, compara e sugere ajustes com precisão profissional.</p>
+    </div>
+    <div class="cap-card">
+      <h3>Raciocínio Complexo</h3>
+      <p>Consegue manter contexto longo, resolver problemas em múltiplas etapas e tomar decisões encadeadas. Ideal para briefings e estratégias.</p>
+    </div>
+    <div class="cap-card">
+      <h3>Geração de Código</h3>
+      <p>Melhor modelo público do mundo para engenharia de software. Automatiza fluxos, cria ferramentas internas e integra sistemas sem precisar de dev.</p>
+    </div>
+    <div class="cap-card">
+      <h3>Pesquisa & Síntese</h3>
+      <p>Processa documentos longos, pesquisa, cruza informações e entrega sínteses acionáveis. Elimina horas de trabalho manual em análise.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACTO PRÁTICO -->
+<section>
+  <p class="section-label">Impacto prático</p>
+  <h2 class="section-title">O que muda no seu dia a dia</h2>
+  <p class="section-body">Se você usa IA para criar conteúdo, gerar imagens ou vender serviços de design — essas mudanças são diretas.</p>
+
+  <ul class="impact-list">
+    <li>
+      <span class="impact-num">01</span>
+      <div class="impact-text">
+        <strong>Briefings visuais que o modelo entende de verdade</strong>
+        <p>Manda uma referência de imagem e pede um prompt detalhado. O Fable 5 lê a imagem e devolve instruções precisas para gerar algo no mesmo estilo — sem você precisar descrever do zero.</p>
+      </div>
+    </li>
+    <li>
+      <span class="impact-num">02</span>
+      <div class="impact-text">
+        <strong>Carrosséis e roteiros escritos em um turno</strong>
+        <p>Com raciocínio mais robusto, ele mantém coerência em textos longos, com estrutura, tom e CTA sem inconsistências. Pede uma vez e já sai publicável.</p>
+      </div>
+    </li>
+    <li>
+      <span class="impact-num">03</span>
+      <div class="impact-text">
+        <strong>Automação de propostas e onboarding de clientes</strong>
+        <p>Conectado à API, você cria fluxos que recebem o briefing do cliente, geram proposta personalizada e enviam sem intervenção manual. O modelo entende contexto suficiente para isso.</p>
+      </div>
+    </li>
+    <li>
+      <span class="impact-num">04</span>
+      <div class="impact-text">
+        <strong>Análise de portfólio e posicionamento</strong>
+        <p>Sobe seus cases, pede que o modelo identifique padrões e fraquezas no seu portfólio. Ele devolve uma análise competitiva que levaria horas de pesquisa manual.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- COMO ACESSAR -->
+<section>
+  <p class="section-label">Acesso</p>
+  <h2 class="section-title">Como usar agora</h2>
+  <p class="section-body">O acesso já está ativo. Veja como está disponível dependendo do seu plano atual:</p>
+
+  <div class="access-box">
+    <h3>Disponibilidade por plano</h3>
+    <ul>
+      <li><strong>Claude.ai Pro / Max / Team / Enterprise (seat)</strong> — Fable 5 incluso sem custo extra até 22 de junho</li>
+      <li><strong>API</strong> — disponível hoje a $10/M tokens de input e $50/M de output</li>
+      <li><strong>Plano gratuito</strong> — acesso limitado, rollout em fases nas próximas semanas</li>
+      <li><strong>Enterprise consumption-based</strong> — disponível via API agora</li>
+    </ul>
+    <p class="deadline">⏳ Janela gratuita encerra em 22 de junho — ative já</p>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <p class="section-label">Próximo passo</p>
+  <h2>QUER APRENDER A USAR ISSO NO SEU NEGÓCIO?</h2>
+  <p>Me segue no Instagram para receber os próximos drops — toda novidade de IA traduzida em oportunidade prática para criadores e prestadores de serviço.</p>
+  <a class="btn-wpp" href="https://instagram.com/guilherme.thomaz.ia" target="_blank">VER @guilherme.thomaz.ia</a>
+</section>
+
+<footer>
+  <span>Criado por <a href="https://instagram.com/guilherme.thomaz.ia" target="_blank">@guilherme.thomaz.ia</a></span>
+  <span>Conteúdo informativo · Junho 2026</span>
+</footer>
+
+</body>
+</html>
